@@ -1,6 +1,6 @@
 package main
 
-import "tfrun/cmd"
+import "test-tfrun/cmd"
 
 func main() {
 	cmd.Execute()
