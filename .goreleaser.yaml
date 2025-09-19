@@ -16,7 +16,7 @@ builds:
   - linux
   - darwin
   ldflags:
-  - "-s -w -X tfcount/cmd.version={{ .Version }}"
+  - "-s -w -X test-tfrun/cmd/tfrun.version={{ .Version }}"
 
 archives:
 - formats: [ tar.gz ]
