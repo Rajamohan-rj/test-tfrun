@@ -42,7 +42,7 @@ deb: build
 	echo "Section: utils" >> dist/deb/DEBIAN/control
 	echo "Priority: optional" >> dist/deb/DEBIAN/control
 	echo "Architecture: amd64" >> dist/deb/DEBIAN/control
-	echo "Maintainer: You <you@example.com>" >> dist/deb/DEBIAN/control
+	echo "Maintainer: You <garajamohan@gmail.com>" >> dist/deb/DEBIAN/control
 	echo "Description: Git-aware Terraform runner" >> dist/deb/DEBIAN/control
 	dpkg-deb --build dist/deb dist/tf-run_$(VERSION)_amd64.deb
 
