@@ -11,14 +11,14 @@ import (
 )
 
 type Options struct {
-	Staged    bool
+	Staged     bool
 	againstSet bool
-	Against   string
-	All       bool
-	ForceInit bool
-	NoUpgrade bool
-	DryRun    bool
-	Verbose   bool
+	Against    string
+	All        bool
+	ForceInit  bool
+	NoUpgrade  bool
+	DryRun     bool
+	Verbose    bool
 }
 
 func (o *Options) init() {
@@ -59,7 +59,9 @@ func Run(opts Options) error {
 		}
 		if needInit || opts.ForceInit {
 			args := []string{"init"}
-			if !opts.NoUpgrade { args = append(args, "-upgrade") }
+			if !opts.NoUpgrade {
+				args = append(args, "-upgrade")
+			}
 			if err := runTerraform(abs, opts, args...); err != nil {
 				return err
 			}
@@ -85,7 +87,9 @@ func uniqueDirs(files []string) []string {
 		m[d] = struct{}{}
 	}
 	out := make([]string, 0, len(m))
-	for d := range m { out = append(out, d) }
+	for d := range m {
+		out = append(out, d)
+	}
 	sort.Strings(out)
 	return out
 }
@@ -129,8 +133,12 @@ func shouldInit(dir, repoRoot string, opts Options) (bool, string, error) {
 	// If lockfile is older than latest *.tf in dir
 	latestTf := time.Unix(0, 0)
 	err = filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
-		if err != nil { return err }
-		if info.IsDir() { return nil }
+		if err != nil {
+			return err
+		}
+		if info.IsDir() {
+			return nil
+		}
 		if strings.HasSuffix(path, ".tf") {
 			if info.ModTime().After(latestTf) {
 				latestTf = info.ModTime()
@@ -138,7 +146,9 @@ func shouldInit(dir, repoRoot string, opts Options) (bool, string, error) {
 		}
 		return nil
 	})
-	if err != nil { return false, "", err }
+	if err != nil {
+		return false, "", err
+	}
 
 	if lockStat.ModTime().Before(latestTf) {
 		return true, "lockfile older than *.tf", nil
@@ -147,7 +157,9 @@ func shouldInit(dir, repoRoot string, opts Options) (bool, string, error) {
 	// If lockfile appears modified in diff (when not --all)
 	if !opts.All {
 		changed, err := gitLockfileChanged(repoRoot, opts.Staged, opts.againstSet, opts.Against, dir)
-		if err != nil { return false, "", err }
+		if err != nil {
+			return false, "", err
+		}
 		if changed {
 			return true, ".terraform.lock.hcl changed in diff", nil
 		}
