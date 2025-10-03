@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"tfrun/internal/runner"
+	"github.com/rajamohan-rj/tfrun/internal/runner"
 	"github.com/spf13/cobra"
 )
 

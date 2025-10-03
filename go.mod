@@ -1,4 +1,4 @@
-module tfrun
+module github.com/rajamohan-rj/tfrun
 
 go 1.21
 

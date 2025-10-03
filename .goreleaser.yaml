@@ -23,7 +23,7 @@ builds:
   - goos: windows
     goarch: arm64
   ldflags:
-  - "-s -w -X tfrun/cmd/tfrun.version={{ .Version }} -X tfrun/cmd/tfrun.commit={{ .Commit }} -X tfrun/cmd/tfrun.date={{ .Date }}"
+  - "-s -w -X github.com/rajamohan-rj/tfrun/cmd/tfrun.version={{ .Version }} -X github.com/rajamohan-rj/tfrun/cmd/tfrun.commit={{ .Commit }} -X github.com/rajamohan-rj/tfrun/cmd/tfrun.date={{ .Date }}"
 
 archives:
 - name_template: >-
